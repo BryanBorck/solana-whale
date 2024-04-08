@@ -32,16 +32,9 @@ import { PopoverClose } from "@radix-ui/react-popover"
 import { Checkbox } from "@/components/ui/checkbox"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Reveal, RevealWrapper } from "@/components/Reveal"
-
+import { allowedTokens } from "@/utils/adresses"
 
 export default function CreateFund() {
-
-    const allowedTokens = {
-        "SOL": "SOL",
-        "USDC": "USDC",
-    } as {
-        [key: string]: string;
-    }
 
     const navigator = useNavigate();
 

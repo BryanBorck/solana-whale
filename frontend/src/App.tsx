@@ -15,6 +15,9 @@ import Test from './pages/Test';
 import Explorer from './pages/Explorer';
 import Fund from './pages/Fund';
 import CreateFund from './pages/CreateFund';
+import Success from './pages/Success';
+import Claim from './pages/Claim';
+import DepositorProfile from './pages/DepositorProfile';
 
 function App() {
 
@@ -37,6 +40,9 @@ function App() {
                   <Route path="/funds" element={<Explorer />} />
                   <Route path="/funds/:id" element={<Fund />} />
                   <Route path="/create-fund" element={<CreateFund />} />
+                  <Route path="/success" element={<Success />} />
+                  <Route path="/claim" element={<Claim />} />
+                  <Route path="/depositor/:address" element={<DepositorProfile />} />
                   <Route path="*" element={<div>404</div>} />
                 </Route>
               </Routes>

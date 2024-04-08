@@ -2,6 +2,9 @@ export const menuOptions = [
     { name: 'Test Page', to: '/test' },
     { name: 'Explorer', to: '/funds' },
     { name: 'Create Fund', to: '/create-fund' },
+    { name: 'Success', to: '/success' },
+    { name: 'Claim', to: '/claim' },
+    { name: 'Profile', to: '/depositor/12' },
     // { name: 'Projects', to: '/projects' },
     // { name: 'Create Project', to: '/create-project' },
 ];
