@@ -11,6 +11,7 @@ import {
     AccordionTrigger,
   } from "@/components/ui/accordion"
 import { faq } from '@/utils/faq';
+import imageBkg from '@/assets/bkg_hero_whale.png';
 
 export default function Home() {
 
@@ -24,7 +25,8 @@ export default function Home() {
 
 
             <RevealWrapper>
-            <div className="w-full h-[600px] bg-cover bg-center relative" style={{ backgroundImage: "url('src/assets/bkg_hero_whale.png')" }}>
+            <div className="w-full h-[600px] bg-cover bg-center relative">
+                <img src={imageBkg} alt="fund" className="absolute object-cover w-full top-0 left-0 w-full"/>
                 <div className='absolute w-full h-[100%] flex flex-row'>
                     <div className='basis-1/2 h-[100%]'>
                         
