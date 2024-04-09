@@ -43,8 +43,11 @@ import {
     Idl,
     AnchorProvider,
     setProvider,
+    web3,
   } from "@coral-xyz/anchor"
-import { publicKey } from "@coral-xyz/anchor/dist/cjs/utils"
+import * as anchor from "@coral-xyz/anchor"; 
+import { TOKEN_PROGRAM_ID } from "@coral-xyz/anchor/dist/cjs/utils/token";
+import { VaultMinterIdl } from "@/programs/VaultMinter"
 
 export default function CreateFund() {
 
@@ -74,6 +77,10 @@ export default function CreateFund() {
     }
 
     const [tokens, setTokens] = React.useState<string[]>([]);
+
+    const { connection } = useConnection();
+    const { publicKey } = useWallet();
+    const wallet = useAnchorWallet();
 
     // function handleDateTimestamp(date: Date | undefined) {
     //     const safeDate = date || new Date();
@@ -121,19 +128,38 @@ export default function CreateFund() {
         // const perfFeeBps = perfFee * 100;
 
         try{
-            // const { connection } = useConnection();
-            // const { publicKey } = useWallet();
-            // const wallet = useAnchorWallet();
-            // const provider = new AnchorProvider(connection, wallet as AnchorWallet, {});
-            // const program = new Program(VaultMinterIdl as Idl, "55tC9joryrqBuUJjURE5i2pLLbzoFfx1K1hRWnMfigtF");
+            
+            const provider = new AnchorProvider(connection, wallet as AnchorWallet, {});
+            const program = new Program(VaultMinterIdl as Idl, "55tC9joryrqBuUJjURE5i2pLLbzoFfx1K1hRWnMfigtF", provider);
 
-            // const context = {
-                
+            console.log(VaultMinterIdl)
 
+            console.log("Teste"+ wallet);
 
-            // }
+            const mintToken = anchor.web3.Keypair.generate();
+            const associateTokenProgram = new anchor.web3.PublicKey("ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL");
+            
 
-            // const txHash = await program.methods.createVault().accounts(context).rpc()
+            const tokenAccount = anchor.utils.token.associatedAddress({
+                mint: mintToken.publicKey,
+                owner: publicKey as web3.PublicKey
+            });
+
+            
+            
+            const context = {
+                mintToken: mintToken.publicKey,
+                tokenAccount: tokenAccount,
+                associateTokenProgram: associateTokenProgram,
+                signer: publicKey as web3.PublicKey,
+                // rent: web3.SYSVAR_RENT_PUBKEY,
+                // systemProgram: web3.SystemProgram.programId,
+                // tokenProgram: TOKEN_PROGRAM_ID,
+
+            }
+
+            const txHash = await program.methods.createVault().
+                    accounts(context).signers([mintToken]).rpc()
 
 
             navigator('/success');
@@ -151,7 +177,7 @@ export default function CreateFund() {
     function onSave() {
         toast({
           title: "You saved",
-          description: "Fund data information",
+          description: "Vault data information",
         })
         console.log(name);
         console.log(ticker);
@@ -185,9 +211,9 @@ export default function CreateFund() {
                 <Tabs defaultValue="fund_data" className="w-full">
                     <Reveal delay={0.4}>
                     <TabsList className="mb-8 grid-cols-2">
-                        <TabsTrigger className="px-6" value="fund_data">Fund Data</TabsTrigger>
+                        <TabsTrigger className="px-6" value="fund_data">Vault Data</TabsTrigger>
                         <TabsTrigger className="px-6" value="social">Social Verification</TabsTrigger>
-                        <TabsTrigger className="px-6" value="fund_regulation">Fund Regulation</TabsTrigger>
+                        <TabsTrigger className="px-6" value="fund_regulation">Vault Regulation</TabsTrigger>
                     </TabsList>
                     </Reveal>
 
@@ -199,7 +225,7 @@ export default function CreateFund() {
                     <TabsContent value="fund_data">
                         <Card>
                         <CardHeader>
-                            <CardTitle>Fund Data</CardTitle>
+                            <CardTitle>Vault Data</CardTitle>
                             <CardDescription>
                             Make changes to your fund information here. Click save when you're done.
                             </CardDescription>

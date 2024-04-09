@@ -61,7 +61,7 @@ export default function Home() {
                         <Reveal delay={1.1}>
                         <div className="fancy bg-[#4FC0B0] border-background w-96 h-12 rounded-full -mt-6">
                             <button className="bg-transparent text-background flex flex-col items-center justify-center text-lg absolute inset-0 z-10 p-6" onClick={() => navigator("/create-fund")}>
-                                Create Fund as Trader
+                                Create Vault as Trader
                             </button>
                         </div>
                         </Reveal>
@@ -104,7 +104,7 @@ export default function Home() {
                     </Reveal>
                     <Reveal delay={0.6}>
                     <div className='flex-1 flex flex-col justify-start items-center justify-center'>
-                        <p className='text-4xl font-bold text-primary'>Invest in Funds</p>
+                        <p className='text-4xl font-bold text-primary'>Invest in Vaults</p>
                         <p className='text-lg px-4 mt-12'>
                             With Whale Finance, you can invest in a variety of funds managed by the best traders in the world.
                         </p>

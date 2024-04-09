@@ -1,4 +1,4 @@
-const VaultMinterIdl = {
+export const VaultMinterIdl = {
     "version": "0.1.0",
     "name": "vault_minter",
     "instructions": [
