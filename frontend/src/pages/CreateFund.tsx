@@ -33,6 +33,9 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Reveal, RevealWrapper } from "@/components/Reveal"
 import { allowedTokens } from "@/utils/adresses"
+import '@farcaster/auth-kit/styles.css';
+import { SignInButton } from '@farcaster/auth-kit';
+import { useProfile } from '@farcaster/auth-kit';
 
 export default function CreateFund() {
 
@@ -48,7 +51,12 @@ export default function CreateFund() {
     const [ticker, setTicker] = React.useState('');
     const [admFee, setAdmFee] = React.useState(0.5);
     const [perfFee, setPerfFee] = React.useState(10);
+    const [twitterhandle, setTwitterhandle] = React.useState('');
 
+    const {
+        isAuthenticated,
+        profile: { username, fid },
+    } = useProfile();
 
     const [tokens, setTokens] = React.useState<string[]>([]);
 
@@ -122,6 +130,13 @@ export default function CreateFund() {
         console.log(perfFee);
     }
 
+    function onVerification() {
+        toast({
+          title: "You are verified",
+          description: "Farcaster and Twitter verified",
+        })
+    }
+
     const onSubmit = async () => {
         await handleSubmit();
         toast({
@@ -142,9 +157,15 @@ export default function CreateFund() {
                     <Reveal delay={0.4}>
                     <TabsList className="mb-8 grid-cols-2">
                         <TabsTrigger className="px-6" value="fund_data">Fund Data</TabsTrigger>
+                        <TabsTrigger className="px-6" value="social">Social Verification</TabsTrigger>
                         <TabsTrigger className="px-6" value="fund_regulation">Fund Regulation</TabsTrigger>
                     </TabsList>
                     </Reveal>
+
+
+                    {/* Fund Data */}
+
+
                     <Reveal delay={0.6}>
                     <TabsContent value="fund_data">
                         <Card>
@@ -215,6 +236,68 @@ export default function CreateFund() {
                         </Card>
                     </TabsContent>
                     </Reveal>
+
+
+                    {/* Social */}
+
+
+                    <Reveal delay={0.6}>
+                    <TabsContent value="social">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Social Verification</CardTitle>
+                            <CardDescription>
+                                Sign-in with Farcaster and provide your twitter handle
+                            </CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-2">
+                            <div className="flex flex-col space-y-4">
+                                <div className="space-y-1 w-[50%]">
+                                    <Label>Twitter Handle</Label>
+                                    <Input 
+                                        id="twitter" 
+                                        type="text" 
+                                        placeholder="ex. @Whale_dApp" 
+                                        value={twitterhandle}
+                                        onChange={(e) => setTwitterhandle(e.target.value)}
+                                    />
+                                </div>
+                                <div className="w-40 flex flex-col justify-center items-start bg-secondary border-[1px] border-transparent hover:border-purple-600 cursor-pointer">
+                                    <SignInButton />
+                                </div>
+                                <div className="px-1">
+                                {isAuthenticated ? (
+                                    <p>
+                                    Hello, {username}! Your fid is: {fid}
+                                    </p>
+                                ) : (
+                                    <p>You're not signed in.</p>
+                                )}
+                                </div>
+                            </div>
+                        </CardContent>
+                        <CardFooter>
+                            {loading ?
+                            <Button disabled>
+                                <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+                                Please wait
+                            </Button>
+                            :
+                            isAuthenticated 
+                            ? 
+                            <Button onClick={onVerification}>Verify user</Button>
+                            : 
+                            <Button disabled>Sign in in Farcaster</Button>
+                            }
+                        </CardFooter>
+                        </Card>
+                    </TabsContent>
+                    </Reveal>
+
+
+                    {/* Last Part */}
+
+
                     <Reveal delay={0.6}>
                     <TabsContent value="fund_regulation">
                         <Card>

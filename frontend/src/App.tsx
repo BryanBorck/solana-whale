@@ -18,35 +18,44 @@ import CreateFund from './pages/CreateFund';
 import Success from './pages/Success';
 import Claim from './pages/Claim';
 import DepositorProfile from './pages/DepositorProfile';
+import { AuthKitProvider } from '@farcaster/auth-kit';
 
 function App() {
 
   const endpoint = web3.clusterApiUrl("devnet");
   const wallets = useMemo(() => [], []);
 
+  const config = {
+    rpcUrl: 'https://mainnet.optimism.io',
+    domain: 'example.com',
+    siweUri: 'https://example.com/login',
+  };
+
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <ConnectionProvider endpoint={endpoint}>
         <WalletProvider wallets={wallets}>
           <WalletModalProvider>
-            <BrowserRouter>
-              <Routes>
-                <Route path="/" element={
-                  <Layout
-                  />
-                }>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/test" element={<Test />} />
-                  <Route path="/funds" element={<Explorer />} />
-                  <Route path="/funds/:id" element={<Fund />} />
-                  <Route path="/create-fund" element={<CreateFund />} />
-                  <Route path="/success" element={<Success />} />
-                  <Route path="/claim" element={<Claim />} />
-                  <Route path="/depositor/:address" element={<DepositorProfile />} />
-                  <Route path="*" element={<div>404</div>} />
-                </Route>
-              </Routes>
-            </BrowserRouter>
+            <AuthKitProvider config={config}>
+              <BrowserRouter>
+                <Routes>
+                  <Route path="/" element={
+                    <Layout
+                    />
+                  }>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/test" element={<Test />} />
+                    <Route path="/funds" element={<Explorer />} />
+                    <Route path="/funds/:id" element={<Fund />} />
+                    <Route path="/create-fund" element={<CreateFund />} />
+                    <Route path="/success" element={<Success />} />
+                    <Route path="/claim" element={<Claim />} />
+                    <Route path="/depositor/:address" element={<DepositorProfile />} />
+                    <Route path="*" element={<div>404</div>} />
+                  </Route>
+                </Routes>
+              </BrowserRouter>
+            </AuthKitProvider>
           </WalletModalProvider>
         </WalletProvider>
       </ConnectionProvider>
