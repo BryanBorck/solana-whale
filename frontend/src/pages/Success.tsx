@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/card"
 import { Button } from '../components/ui/button';
 import { Reveal, RevealWrapper } from '@/components/Reveal';
+import FarcasterLogo from "@/assets/farcaster_logo.png";
 
 export default function Success() {
 
@@ -40,9 +41,15 @@ export default function Success() {
                                 />
                             </div>
                             <div className='flex flex-row space-x-4'>
-                            <Button onClick={() => history('/')}>Back Home</Button>
-                            <Button onClick={() => history('/funds')}>Explore Funds</Button>
+                                <Button onClick={() => history('/')}>Back Home</Button>
+                                <Button onClick={() => history('/funds')}>Explore Funds</Button>
                             </div>
+                        </div>
+                        <div className='flex flex-col justify-center w-full items-center mt-6'>
+                            <a href={`https://warpcast.com/~/compose?text=Deposit%20with%20Whale%20Finance!%20Follow%20us%20@Whale_dApp&embeds[]=https://whale-frame.vercel.app//api/${1}`} target="_blank" className='w-56 flex flex-row justify-center items-center space-x-2 border-[2px] border-secondary py-2 h-10 hover:cursor-pointer'>
+                                <div>Share on Farcaster</div>
+                                <img src={FarcasterLogo} alt="" className="shadow-md w-5"/>
+                            </a>
                         </div>
                     </CardContent>
                     </Reveal>

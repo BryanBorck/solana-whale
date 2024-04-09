@@ -58,6 +58,12 @@ export default function CreateFund() {
         profile: { username, fid },
     } = useProfile();
 
+    function toMaskStyle(str: string) {
+        const visiblePart = str.slice(-3);
+        const maskedPart = visiblePart.padStart(str.length, '*');
+        return maskedPart;
+    }
+
     const [tokens, setTokens] = React.useState<string[]>([]);
 
     // function handleDateTimestamp(date: Date | undefined) {
@@ -268,7 +274,7 @@ export default function CreateFund() {
                                 <div className="px-1">
                                 {isAuthenticated ? (
                                     <p>
-                                    Hello, {username}! Your fid is: {fid}
+                                    Hello, {username}! Your fid is: {toMaskStyle(fid?.toString() ?? '')}
                                     </p>
                                 ) : (
                                     <p>You're not signed in.</p>
