@@ -5,7 +5,8 @@ import { ModeToggle } from "./mode-toggle";
 import LogoApp from '../assets/whale_logo_green.png';
 import { useEffect, useState } from 'react';
 import {
-    useConnection, 
+    useAnchorWallet,
+    useConnection,
     useWallet
 } from "@solana/wallet-adapter-react";
 import {

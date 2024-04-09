@@ -36,6 +36,15 @@ import { allowedTokens } from "@/utils/adresses"
 import '@farcaster/auth-kit/styles.css';
 import { SignInButton } from '@farcaster/auth-kit';
 import { useProfile } from '@farcaster/auth-kit';
+import { AnchorWallet, Wallet, useAnchorWallet, useConnection, useWallet } from "@solana/wallet-adapter-react"
+
+import {
+    Program,
+    Idl,
+    AnchorProvider,
+    setProvider,
+  } from "@coral-xyz/anchor"
+import { publicKey } from "@coral-xyz/anchor/dist/cjs/utils"
 
 export default function CreateFund() {
 
@@ -106,7 +115,21 @@ export default function CreateFund() {
         // const perfFeeBps = perfFee * 100;
 
         try{
-            console.log("Suceess! Fund created!");
+            const { connection } = useConnection();
+            const { publicKey } = useWallet();
+            const wallet = useAnchorWallet();
+            const provider = new AnchorProvider(connection, wallet as AnchorWallet, {});
+            const program = new Program(VaultMinterIdl as Idl, "55tC9joryrqBuUJjURE5i2pLLbzoFfx1K1hRWnMfigtF");
+
+            const context = {
+                
+
+
+            }
+
+            const txHash = await program.methods.createVault().accounts(context).rpc()
+
+
             navigator('/success');
 
         } catch(err){
@@ -430,7 +453,7 @@ export default function CreateFund() {
                                 Please wait
                             </Button>
                             :
-                            <Button onClick={onSubmit}>Submit Fund</Button>
+                            <Button onClick={onSubmit}>Create Vault</Button>
                             }
                         </CardFooter>
                         </Card>
