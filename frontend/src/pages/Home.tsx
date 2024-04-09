@@ -12,10 +12,14 @@ import {
   } from "@/components/ui/accordion"
 import { faq } from '@/utils/faq';
 import imageBkg from '@/assets/bkg_hero_whale.png';
+import { useNavigate } from 'react-router-dom';
+import { FaDiscord, FaTwitter, FaGithub, FaLinkedin, FaTelegram } from 'react-icons/fa';
 
 export default function Home() {
 
     const fund = fundData[0];
+
+    const navigator = useNavigate();
 
     return (
         <div className='w-[100vw] relative'>
@@ -39,15 +43,24 @@ export default function Home() {
                         <p className='text-background font-thin text-2xl'>Connecting Exceptional Traders to On-chain Investors</p>
                         </Reveal>
                         <Reveal delay={0.7}>
+                        <div className="flex justify-center -mt-5 space-x-4">
+                            <a href="https://twitter.com/Whale_dApp" target='_blank'><FaTwitter className="text-3xl text-background cursor-pointer" /></a>
+                            <a href="https://t.me/finance_whale" target='_blank'><FaTelegram className="text-3xl text-background cursor-pointer" /></a>
+                            <a href="https://discord.gg/zCRxDTTM" target='_blank'><FaDiscord className="text-3xl text-background cursor-pointer" /></a>
+                            <a href="https://github.com/whale-finance-solana" target='_blank'><FaGithub className="text-3xl text-background cursor-pointer" /></a>
+                            <a href="https://www.linkedin.com/company/whale-finance/" target='_blank'><FaLinkedin className="text-3xl text-background cursor-pointer" /></a>
+                        </div>
+                        </Reveal>
+                        <Reveal delay={0.9}>
                         <div className="fancy bg-[#4FC0B0] border-background w-96 h-12 rounded-full">
-                            <button className="bg-transparent text-background flex flex-col items-center justify-center text-lg absolute inset-0 z-10 p-6">
+                            <button className="bg-transparent text-background flex flex-col items-center justify-center text-lg absolute inset-0 z-10 p-6" onClick={() => navigator("/funds")}>
                                 Explore Funds
                             </button>
                         </div>
                         </Reveal>
-                        <Reveal delay={0.9}>
+                        <Reveal delay={1.1}>
                         <div className="fancy bg-[#4FC0B0] border-background w-96 h-12 rounded-full -mt-6">
-                            <button className="bg-transparent text-background flex flex-col items-center justify-center text-lg absolute inset-0 z-10 p-6">
+                            <button className="bg-transparent text-background flex flex-col items-center justify-center text-lg absolute inset-0 z-10 p-6" onClick={() => navigator("/create-fund")}>
                                 Create Fund as Trader
                             </button>
                         </div>
@@ -97,12 +110,12 @@ export default function Home() {
                         </p>
                         <div className='flex flex-row space-x-8 mt-12'>
                             <div className="fancy bg-secondary shadow-xl w-48 h-12 rounded-full">
-                                <button className="bg-transparent text-primary flex flex-col items-center justify-center text-lg absolute inset-0 z-10 p-6">
+                                <button className="bg-transparent text-primary flex flex-col items-center justify-center text-lg absolute inset-0 z-10 p-6" onClick={() => navigator("/funds")}> 
                                     Explore Funds
                                 </button>
                             </div>
                             <div className="fancy bg-secondary shadow-xl w-48 h-12 rounded-full">
-                                <button className="bg-transparent text-primary flex flex-col items-center justify-center text-lg absolute inset-0 z-10 p-6">
+                                <button className="bg-transparent text-primary flex flex-col items-center justify-center text-lg absolute inset-0 z-10 p-6" onClick={() => navigator("/create-fund")}>
                                     Create my Fund
                                 </button>
                             </div>

@@ -1,8 +1,11 @@
 import { FaDiscord, FaTwitter, FaGithub, FaLinkedin, FaTelegram } from 'react-icons/fa';
 import { Reveal, RevealWrapper } from './Reveal';
 import imageBkg from '@/assets/whale_bkg2.png';
+import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
+
+  const navigator = useNavigate();
 
   return  (
     <RevealWrapper>
@@ -24,10 +27,10 @@ const Footer = () => {
         <div>
             <h5 className="text-xl font-semibold mb-4">Quick Links</h5>
             <ul className="text-background">
-            <li className="mb-2">Home</li>
-            <li className="mb-2">About</li>
-            <li className="mb-2">Docs</li>
-            <li className="mb-2">Contact</li>
+            <li className="mb-2" onClick={() => navigator("/")}>Home</li>
+            <a href="https://twitter.com/Whale_dApp" className="mb-2" target='_blank'>About</a>
+            <a href="https://github.com/Whale-Finance-Blockchain" className="mb-2" target='_blank'>Docs</a>
+            <li className="mb-2" onClick={() => navigator("/")}>Contact</li>
             </ul>
         </div>
 
@@ -35,9 +38,8 @@ const Footer = () => {
         <div>
             <h5 className="text-xl font-semibold mb-4">Contact Us</h5>
             <ul className="text-background">
-            <li className="mb-2">Email: info@example.com</li>
-            <li className="mb-2">Phone: (123) 456-7890</li>
-            <li className="mb-2">Address: 123 Street, City, Country</li>
+            <li className="mb-2">Email: whale_finance@gmail.com</li>
+            <li className="mb-2">Address: DCTA, São José dos Campos Brazil</li>
             </ul>
         </div>
         </div>
@@ -46,11 +48,11 @@ const Footer = () => {
         {/* Social Media Icons */}
         <Reveal delay={0.6}>
         <div className="flex justify-center mt-8 space-x-4">
-          <a href="https://discord.gg/zCRxDTTM"><FaDiscord className="text-3xl cursor-pointer" /></a>
-          <a href="https://twitter.com/Whale_dApp"><FaTwitter className="text-3xl cursor-pointer" /></a>
-          <a href="https://t.me/finance_whale"><FaTelegram className="text-3xl cursor-pointer" /></a>
-          <a href="https://github.com/Whale-Finance-Blockchain"><FaGithub className="text-3xl cursor-pointer" /></a>
-          <a href="https://www.linkedin.com/company/whale-finance/"><FaLinkedin className="text-3xl cursor-pointer" /></a>
+          <a href="https://discord.gg/zCRxDTTM" target='_blank'><FaDiscord className="text-3xl cursor-pointer" /></a>
+          <a href="https://twitter.com/Whale_dApp" target='_blank'><FaTwitter className="text-3xl cursor-pointer" /></a>
+          <a href="https://t.me/finance_whale" target='_blank'><FaTelegram className="text-3xl cursor-pointer" /></a>
+          <a href="https://github.com/whale-finance-solana" target='_blank'><FaGithub className="text-3xl cursor-pointer" /></a>
+          <a href="https://www.linkedin.com/company/whale-finance/" target='_blank'><FaLinkedin className="text-3xl cursor-pointer" /></a>
         </div>
 
         <div className="text-center text-background mt-8">

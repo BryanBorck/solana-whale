@@ -56,7 +56,7 @@ export default function DepositorProfile() {
         <div className='w-[100vw]'>
             <div className="h-16 bg-background"></div>
             <RevealWrapper>
-            <Reveal delay={0.4}>
+            <Reveal delay={0.1}>
             <div className="w-full pt-12 h-36 pb-10 mb-8 text-foreground shadow-xl flex flex-row items-center relative overflow-hidden">
                 <img src={image} alt="fund" className="absolute object-cover w-full"/>
                 <div className='absolute inset-0 h-[100%] flex flex-row items-center px-12'>
