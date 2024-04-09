@@ -1,5 +1,4 @@
 export const menuOptions = [
-    { name: 'Test Page', to: '/test' },
     { name: 'Explorer', to: '/funds' },
     { name: 'Create Fund', to: '/create-fund' },
     { name: 'Success', to: '/success' },
