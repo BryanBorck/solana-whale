@@ -121,19 +121,19 @@ export default function CreateFund() {
         // const perfFeeBps = perfFee * 100;
 
         try{
-            const { connection } = useConnection();
-            const { publicKey } = useWallet();
-            const wallet = useAnchorWallet();
-            const provider = new AnchorProvider(connection, wallet as AnchorWallet, {});
-            const program = new Program(VaultMinterIdl as Idl, "55tC9joryrqBuUJjURE5i2pLLbzoFfx1K1hRWnMfigtF");
+            // const { connection } = useConnection();
+            // const { publicKey } = useWallet();
+            // const wallet = useAnchorWallet();
+            // const provider = new AnchorProvider(connection, wallet as AnchorWallet, {});
+            // const program = new Program(VaultMinterIdl as Idl, "55tC9joryrqBuUJjURE5i2pLLbzoFfx1K1hRWnMfigtF");
 
-            const context = {
+            // const context = {
                 
 
 
-            }
+            // }
 
-            const txHash = await program.methods.createVault().accounts(context).rpc()
+            // const txHash = await program.methods.createVault().accounts(context).rpc()
 
 
             navigator('/success');
