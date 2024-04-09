@@ -10,6 +10,7 @@ import { toast } from "@/components/ui/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
 import { HeroSectionProps } from '@/utils/props';
 import { Reveal, RevealWrapper } from './Reveal';
+import FarcasterLogo from "@/assets/farcaster_logo.png";
 
 // need to fix the image address
 
@@ -81,6 +82,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({ name, description, avatar, im
                                 </TooltipContent>
                             </Tooltip>
                         </TooltipProvider>
+                        <div className="flex flex-col justify-center items-center px-4 z-10 w-16">
+                            <img src={FarcasterLogo} alt="" className="shadow-md cursor-pointer"/>
+                        </div>
                     </div>
                 </div>
             </div>

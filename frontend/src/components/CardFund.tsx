@@ -1,6 +1,7 @@
 import { BarChart2, Gauge } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import solanaIcon from "@/assets/SOL-icon.png";
+import FarcasterLogo from "@/assets/farcaster_logo.png";
 
 export function CardFund ({id, name, description, avatar, image, manager, risk, TVL, performance, loading}: 
     {id: number, name: string, description: string, avatar: string, image: string, manager: string, risk: string, TVL: string, performance: string, loading: boolean}) {
@@ -38,7 +39,7 @@ export function CardFund ({id, name, description, avatar, image, manager, risk, 
                     </div>
                     <div className={`absolute w-full -bottom-10 h-24 opacity-50 bg-gradient-to-t ${riskBkgColor} to-transparent`}/>
                 </div>
-                <div className="aspect-[2/1] p-4 space-y-4 py-6">
+                <div className="aspect-[2/1] p-4 space-y-4 py-6 relative">
                     <div className="flex flex-row items-center space-x-2">
                         <Gauge className={`${riskColor} w-6 h-6`} />
                         <p className={`${riskColor}`}>{risk}</p>
@@ -49,6 +50,9 @@ export function CardFund ({id, name, description, avatar, image, manager, risk, 
                     </div>
                     <div className="flex flex-row items-end space-x-2">
                         <img src={solanaIcon} alt="" className="w-[10%] border-[2px] rounded-full border-primary shadow-primary-glow"/>
+                    </div>
+                    <div className="absolute flex flex-col items-end top-0 right-6 w-full">
+                        <img src={FarcasterLogo} alt="" className="w-[10%] shadow-md"/>
                     </div>
                 </div>
             </div>

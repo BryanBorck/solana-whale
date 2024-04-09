@@ -18,9 +18,10 @@ const app = new Frog({
   imageAspectRatio: '1.91:1',
   // Supply a Hub to enable frame verification.
   // hub: neynar({ apiKey: 'NEYNAR_FROG_FM' })
-}).frame('/', (c) => {
+}).frame('/:fundname', (c) => {
+  const fundname = c.req.param('fundname')
   return c.res({
-    action: '/page/0',
+    action: `/${fundname}/page/0`,
     image: (
       <div
       style={{
@@ -29,7 +30,7 @@ const app = new Frog({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        backgroundImage: 'url(https://i.imgur.com/nRFgOg5.png)',
+        backgroundImage: 'url(https://i.imgur.com/3uydTdB.png)',
         backgroundSize: '140% 100%',
         backgroundPosition: 'center',
         width: '100%',
@@ -44,10 +45,11 @@ const app = new Frog({
       <Button>Apply</Button>,
     ],
   })
-}).frame('/page/0', neynarMiddleware, (c) => {
+}).frame('/:fundname/page/0', neynarMiddleware, (c) => {
+  const fundname = c.req.param('fundname')
   const { displayName } = c.var.interactor || {}
   return c.res({
-    action: '/page/1',
+    action: `/${fundname}/page/1`,
     image: (
       <div
       style={{
@@ -72,7 +74,7 @@ const app = new Frog({
 
      <p style={{
         marginTop: 20,
-      }}>Let's start your deposit to our vault!</p>
+      }}>Let's start your deposit to our vault {fundname}!</p>
 
     </div>
     ),
@@ -80,7 +82,8 @@ const app = new Frog({
       <Button>Let`s Go!</Button>,
     ],
   })
-}).frame('/page/1', neynarMiddleware, (c) => {
+}).frame('/:fundname/page/1', neynarMiddleware, (c) => {
+  const fundname = c.req.param('fundname')
   const { displayName } = c.var.interactor || {}
   const transactionId = c.transactionId
   return c.res({
@@ -118,13 +121,13 @@ const app = new Frog({
         </Button.Link>,
       ]
     : [
-      <Button.Transaction action="/finish" target="/send">
+      <Button.Transaction action={`/${fundname}/finish`} target="/send">
         Send Transaction
       </Button.Transaction>,
-      <Button action="/finish">Next</Button>,
+      <Button action={`/${fundname}/finish`}>Next</Button>,
     ],
   })
-}).frame('/finish', neynarMiddleware, (c) => {
+}).frame('/:fundname/finish', neynarMiddleware, (c) => {
 const { buttonValue, inputText } = c;
 const value = inputText || buttonValue;
 const {
