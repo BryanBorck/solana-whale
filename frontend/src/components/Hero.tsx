@@ -11,6 +11,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { HeroSectionProps } from '@/utils/props';
 import { Reveal, RevealWrapper } from './Reveal';
 import FarcasterLogo from "@/assets/farcaster_logo.png";
+import { TwitterLogoIcon } from '@radix-ui/react-icons';
 
 // need to fix the image address
 
@@ -82,8 +83,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({ name, description, avatar, im
                                 </TooltipContent>
                             </Tooltip>
                         </TooltipProvider>
-                        <div className="flex flex-col justify-center items-center px-4 z-10 w-16">
-                            <img src={FarcasterLogo} alt="" className="shadow-md cursor-pointer"/>
+                        <div className="flex flex-row justify-center items-center px-4 z-10 w-32 space-x-4">
+                            <img src={FarcasterLogo} alt="" className="w-8 h-8 cursor-pointer" onClick={() => window.open(`https://warpcast.com/${1}`, '_blank')}/>
+                            <TwitterLogoIcon className="w-8 h-8 cursor-pointer" onClick={() => window.open('https://twitter.com/Whale_dApp', '_blank')}/>
                         </div>
                     </div>
                 </div>
