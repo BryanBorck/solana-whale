@@ -58,7 +58,7 @@ Roadmap and more information in the Slide Deck:
 
 - *Project Logo:* 
 
-![Project Photo](./src/assets/whale_logo_green.png)
+![Project Photo](./frontend/src/assets/whale_logo_green.png)
 
 _
 
